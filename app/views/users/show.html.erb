@@ -4,14 +4,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Latitude:</strong>
-  <%= @user.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @user.longitude %>
-</p>
+  
 
 <p>
   <strong>Address:</strong>
@@ -41,5 +34,9 @@ handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
   markers = handler.addMarkers(<%=raw @hash.to_json %>);
   handler.bounds.extendWith(markers);
   handler.fitMapToBounds();
+  handler.getMap().setZoom(13)
 });
 </script>
+
+
+<%= link_to 'X', user_path(id: params[:id].to_i + 1) if User.exists?(id: params[:id].to_i + 1) %>
